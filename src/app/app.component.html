@@ -1,0 +1,122 @@
+<div class="container-fluid p-3 mb-2 bg-primary text-white">
+    <h2>Pesquisa Socioeconômico</h2>
+</div>
+
+<div class="container">
+  <form #cadastro="ngForm" (submit)="salvar()">
+    <label for="nome">Nome:</label>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" value="nome" id="nome" name="nome" [(ngModel)]="nome" class="form-control" placeholder="Seu nome completo">
+      </div>
+    </div><br>
+
+    <label for="sexo">Sexo:</label><br>
+    <div class="form-check form-check-inline">
+      <input type="radio" value="Masculino" id="sexo" name="sexo" [(ngModel)]="sexo" class="form-check-input">
+      <label class="form-check-label" for="sexo">Masculino</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input type="radio" value="Feminino" id="sexo" name="sexo" [(ngModel)]="sexo" class="form-check-input">
+      <label class="form-check-label" for="sexo">Feminino</label>
+    </div>
+
+    <div><br>
+      <label for="idade">Idade:</label>
+      <input type="number" value="idade" id="idade" name="idade" [(ngModel)]="idade" class="form-control">
+      <small class="form-text text-muted">Insira sua idade.</small>
+
+    </div><br>
+    <div class="form-group">
+      <label for="cidade">Cidade:</label>
+      <select name="cidade" id="cidade" class="custom-select" [(ngModel)]="cidade"><br>
+        <option value="Palmas">Palmas</option>
+        <option value="Porto Nacional">Porto Nacional</option>
+        <option value="Lajeado">Lajeado</option>
+        <option value="Paraíso">Paraíso</option>
+      </select><br>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!cadastro.form.valid"><i class="fa fa-save"> Salvar </i></button>
+      <button type="reset" class="btn btn-outline-danger" formnovalidate> Limpar</button>
+</div>
+<hr>
+<h2>Estatísticas</h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Pessoa mais velha</th>
+      <th scope="col">Pessoa mais nova</th>
+      <th scope="col">Média de idade de mulheres</th>
+      <th scope="col">Média idade de homens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{this.pessoa.calculodeidade().velho}}</td>
+      <td>{{this.pessoa.calculodeidade().novo}}</td>
+      <td>{{media_idade_mulheres}}</td>
+      <td> {{media_idade_homens}}</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Media idade por cidade</h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Cidade</th>
+      <th scope="col">Media</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <th scope="row">Palmas</th>
+          <td>{{media_idade_palmas}}</td>
+        </tr>
+    <tr>
+      <th scope="row">Porto Nacional</th>
+      <td>{{media_idade_porto}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Lajeado</th>
+      <td>{{media_idade_lajeado}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Paraiso</th>
+      <td>{{media_idade_paraiso}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Porcentagem de pessoas por sexo em cada cidade</h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Cidade</th>
+      <th scope="col">Masculino</th>
+      <th scope="col">Feminino</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <th scope="row">Palmas</th>
+          <td>{{porcentagem_homem_palmas}}</td>
+          <td>{{porcentagem_mulher_palmas}}</td>
+        </tr>
+    <tr>
+      <th scope="row">Porto Nacional</th>
+      <td>{{porcentagem_homem_porto}}</td>
+      <td>{{porcentagem_mulher_porto}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Lajeado</th>
+      <td>{{porcentagem_homem_lajeado}}</td>
+      <td>{{porcentagem_mulher_lajeado}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Paraiso</th>
+      <td>{{porcentagem_homem_paraiso}}</td>
+      <td>{{porcentagem_mulher_paraiso}}</td>
+    </tr>
+  </tbody>
+</table>
